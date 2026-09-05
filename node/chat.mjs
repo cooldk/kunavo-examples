@@ -1,6 +1,6 @@
 // Claude via the OpenAI Node SDK — change baseURL, nothing else.
 //   npm i openai
-//   export KUNAVO_API_KEY=sk-kunavo-...
+//   export KUNAVO_API_KEY=sk-kn-...
 import OpenAI from "openai";
 
 const client = new OpenAI({
@@ -9,7 +9,7 @@ const client = new OpenAI({
 });
 
 const resp = await client.chat.completions.create({
-  model: "claude-sonnet-4-6",
+  model: "claude-sonnet-5",
   messages: [{ role: "user", content: "Explain quicksort in one paragraph." }],
 });
 console.log(resp.choices[0].message.content);

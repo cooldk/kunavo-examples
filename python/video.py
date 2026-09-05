@@ -1,8 +1,8 @@
 # Veo 3 text-to-video with the async task lifecycle — the production
 # pattern. Generation takes minutes: submit to /v1/videos, poll the task.
-# From $0.16 per 8s 720p clip (Veo 3 Lite); veo-3 / veo-3-quality for
-# higher tiers. Native synchronized audio.
-#   export KUNAVO_API_KEY=sk-kunavo-...
+# From $0.18 per 720p clip (veo-3-lite), or $0.0526 (seedance-2-mini,
+# 480p); veo-3 / veo-3-quality for higher tiers. Native synchronized audio.
+#   export KUNAVO_API_KEY=sk-kn-...
 import os
 import time
 

@@ -1,7 +1,7 @@
 # Text-to-image with Nano Banana (Google's image family) on the
 # OpenAI-compatible images endpoint. ~$0.027/image; nano-banana-pro for
 # top fidelity and text-in-image.
-#   export KUNAVO_API_KEY=sk-kunavo-...
+#   export KUNAVO_API_KEY=sk-kn-...
 import os
 
 from openai import OpenAI

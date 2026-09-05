@@ -1,6 +1,6 @@
 // Nano Banana text-to-image from Node — OpenAI SDK images API.
 //   npm i openai
-//   export KUNAVO_API_KEY=sk-kunavo-...
+//   export KUNAVO_API_KEY=sk-kn-...
 import OpenAI from "openai";
 
 const client = new OpenAI({

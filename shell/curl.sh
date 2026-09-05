@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Every Kunavo endpoint, raw. export KUNAVO_API_KEY=sk-kunavo-... first.
+# Every Kunavo endpoint, raw. export KUNAVO_API_KEY=sk-kn-... first.
 set -euo pipefail
 
 BASE="https://api.kunavo.com/v1"
@@ -10,7 +10,7 @@ curl -s "$BASE/models" -H "$AUTH" | head -40
 
 # --- Chat (Claude / Gemini / GPT — swap the model string) -------------------
 curl -s "$BASE/chat/completions" -H "$AUTH" -H "Content-Type: application/json" -d '{
-  "model": "claude-sonnet-4-6",
+  "model": "claude-sonnet-5",
   "messages": [{"role": "user", "content": "Hello, Claude"}]
 }'
 

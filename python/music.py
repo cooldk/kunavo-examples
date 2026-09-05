@@ -1,7 +1,7 @@
 # Suno V5 music generation with job polling. $0.09 per generation request;
 # one request returns ~2 track variations for a single charge.
 # Supports plain-prompt, custom lyrics + style, and instrumental modes.
-#   export KUNAVO_API_KEY=sk-kunavo-...
+#   export KUNAVO_API_KEY=sk-kn-...
 import os
 import time
 

@@ -1,7 +1,7 @@
 # Image-to-image: edit an existing image with a text instruction.
 # POST /v1/images/edits takes a prompt + source image (https URL or
 # data: base64 URI) and keeps the subject while applying the change.
-#   export KUNAVO_API_KEY=sk-kunavo-...
+#   export KUNAVO_API_KEY=sk-kn-...
 import os
 
 import requests
