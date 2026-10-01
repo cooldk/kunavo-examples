@@ -8,7 +8,7 @@ AUTH="Authorization: Bearer $KUNAVO_API_KEY"
 # --- Discover models (OpenAI-shaped + a "kunavo" object per entry) ---------
 curl -s "$BASE/models" -H "$AUTH" | head -40
 
-# --- Chat (Claude / Gemini / GPT — swap the model string) -------------------
+# --- Chat (Claude / GPT — swap the model string) --------------------------
 curl -s "$BASE/chat/completions" -H "$AUTH" -H "Content-Type: application/json" -d '{
   "model": "claude-sonnet-5",
   "messages": [{"role": "user", "content": "Hello, Claude"}]

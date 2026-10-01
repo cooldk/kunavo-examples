@@ -1,6 +1,6 @@
 # Kunavo Examples
 
-Runnable examples for [Kunavo](https://kunavo.com) — an independent, OpenAI-compatible AI API gateway: one API key and one pay-as-you-go balance reach Claude, Gemini, GPT and image, video and audio models, with no per-provider account required.
+Runnable examples for [Kunavo](https://kunavo.com) — an independent, OpenAI-compatible AI API gateway: one API key and one pay-as-you-go balance reach Claude, GPT and image, video and audio models, with no per-provider account required.
 
 If your code can call the OpenAI API, it can call Kunavo by changing one line:
 
@@ -28,23 +28,22 @@ Kunavo is an independent gateway that resells access to these models. Kunavo is 
 
 ## What you can call with that one key
 
-Rates below are Kunavo's, in USD, and were taken from the catalog on 2026-09-06. [Live pricing](https://kunavo.com/pricing) is authoritative; `GET /v1/models` is the live catalog.
+Rates below are Kunavo's, in USD, and were taken from the public catalog ([llms.txt](https://kunavo.com/llms.txt)) on 2026-10-01; models that are temporarily off sale are left out. A model you call that is off sale returns an error naming the model to use instead. [Live pricing](https://kunavo.com/pricing) is authoritative; `GET /v1/models` is the live catalog.
 
 **Chat** — per 1M tokens, input / output:
 
 | Model id | In / out | Notes |
 |---|---|---|
-| `claude-sonnet-5` | $2.00 / $10.00 | the general default |
-| `claude-opus-5` | $2.00 / $10.00 | planning, architecture, hard reasoning |
-| `claude-haiku-4-5` | $0.40 / $2.00 | high-volume work; cheapest Claude |
+| `claude-sonnet-5` | $1.40 / $7.00 | the general default |
+| `claude-opus-5-5` | $2.80 / $14.00 | planning, architecture, hard reasoning |
+| `claude-haiku-4-5` | $0.70 / $3.50 | high-volume work; cheapest Claude |
+| `gpt-6-sol` | $0.80 / $4.00 | GPT with long context |
 | `gpt-5-6-sol` | $2.00 / $12.00 | also reachable on `/v1/responses` (Codex CLI) |
-| `gpt-5-4-mini` | $0.225 / $1.35 | cheapest GPT |
-| `gemini-3-1-pro` | $0.70 / $4.20 | long context |
-| `gemini-2-5-flash` | $0.09 / $0.75 | cheapest model in the catalog |
+| `gpt-6-luna` | $0.04 / $0.20 | cheapest text model in the catalog |
 
-**Image** (per image) — `nano-banana` $0.0273, `nano-banana-2`, `nano-banana-2-lite`, `nano-banana-pro` from $0.067, `gpt-image-2` $0.0633, plus `nano-banana-edit` and `gpt-image-2-edit` for editing.
+**Image** (per image) — `nano-banana-2-lite` $0.0255, `nano-banana` $0.0273, `nano-banana-2` from $0.0469, `ideogram-v3` from $0.0525, `gpt-image-2` $0.0633, `nano-banana-pro` from $0.067, plus `nano-banana-edit`, `gpt-image-2-edit` and `ideogram-v3-edit` for editing.
 
-**Video** (per clip, cheapest tier) — `veo-3-lite` from $0.18, `veo-3` from $0.36, `veo-3-quality`, `seedance-2` / `-fast` / `-2-5` / `-mini` from $0.0526, `wan-2-7` from $0.096.
+**Video** — per clip: `veo-3-lite` from $0.18, `veo-3` from $0.36, `veo-3-quality` from $1.60. Per second of video: `seedance-2-mini` from $0.0526, `wan-2-7` from $0.096, `seedance-2-fast` from $0.198, `seedance-2` from $0.246, `seedance-2-5` from $0.3784.
 
 **Music** (per track) — `suno-v5` $0.09, `suno-v5-5`.
 
@@ -55,7 +54,7 @@ Prompt caching is billed at the cache-read rate on every model that supports it,
 | File | What it shows |
 |---|---|
 | [`python/chat.py`](python/chat.py) | Claude via the OpenAI SDK — the two-line switch |
-| [`python/multi_model.py`](python/multi_model.py) | Same code, three providers (Claude, Gemini, GPT) — model string as config |
+| [`python/multi_model.py`](python/multi_model.py) | Same code, two providers (Claude, GPT) — model string as config |
 | [`python/image.py`](python/image.py) | Text-to-image with Nano Banana (`/v1/images/generations`) |
 | [`python/image_edit.py`](python/image_edit.py) | Image-to-image editing (`/v1/images/edits`) |
 | [`python/video.py`](python/video.py) | Veo 3 text-to-video with the async task lifecycle (`/v1/videos`) |

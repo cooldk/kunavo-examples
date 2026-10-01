@@ -1,4 +1,4 @@
-# Same request, three providers — the model string is just config.
+# Same request, two providers — the model string is just config.
 # This is the point of an OpenAI-compatible gateway: no per-provider SDKs.
 #   export KUNAVO_API_KEY=sk-kn-...
 import os
@@ -12,7 +12,7 @@ client = OpenAI(
 
 PROMPT = "In one sentence: what makes a good API?"
 
-for model in ["claude-sonnet-5", "gemini-2-5-flash", "gpt-5-4-mini"]:
+for model in ["claude-sonnet-5", "claude-haiku-4-5", "gpt-6-sol"]:
     resp = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": PROMPT}],
