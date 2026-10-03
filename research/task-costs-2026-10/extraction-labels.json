@@ -1,0 +1,355 @@
+{
+ "9500": {
+  "rfc_number": 9500,
+  "title": "Standard Public Key Cryptography (PKC) Test Keys",
+  "category": "Informational",
+  "date": "2023-12",
+  "authors": [
+   "Gutmann",
+   "Bonnell"
+  ]
+ },
+ "9501": {
+  "rfc_number": 9501,
+  "title": "Open Participation Principle regarding Remote Registration Fee",
+  "category": "Best Current Practice",
+  "date": "2023-12",
+  "authors": [
+   "Kühlewind",
+   "Reed",
+   "Salz"
+  ]
+ },
+ "9502": {
+  "rfc_number": 9502,
+  "title": "IGP Flexible Algorithm in IP Networks",
+  "category": "Standards Track",
+  "date": "2023-11",
+  "authors": [
+   "Britto",
+   "Hegde",
+   "Kaneriya",
+   "Shetty",
+   "Bonica",
+   "Psenak"
+  ]
+ },
+ "9503": {
+  "rfc_number": 9503,
+  "title": "Simple Two-Way Active Measurement Protocol (STAMP) Extensions for Segment Routing Networks",
+  "category": "Standards Track",
+  "date": "2023-10",
+  "authors": [
+   "Gandhi",
+   "Filsfils",
+   "Chen",
+   "Janssens",
+   "Foote"
+  ]
+ },
+ "9504": {
+  "rfc_number": 9504,
+  "title": "Path Computation Element Communication Protocol (PCEP) Extensions for Stateful PCE Usage in GMPLS-Controlled Networks",
+  "category": "Standards Track",
+  "date": "2023-12",
+  "authors": [
+   "Lee",
+   "Zheng",
+   "Gonzalez de Dios",
+   "Lopez",
+   "Ali"
+  ]
+ },
+ "9505": {
+  "rfc_number": 9505,
+  "title": "A Survey of Worldwide Censorship Techniques",
+  "category": "Informational",
+  "date": "2023-11",
+  "authors": [
+   "Hall",
+   "Aaron",
+   "Andersdotter",
+   "Jones",
+   "Feamster",
+   "Knodel"
+  ]
+ },
+ "9506": {
+  "rfc_number": 9506,
+  "title": "Explicit Host-to-Network Flow Measurements Techniques",
+  "category": "Informational",
+  "date": "2023-10",
+  "authors": [
+   "Cociglio",
+   "Ferrieux",
+   "Fioccola",
+   "Lubashev",
+   "Bulgarella",
+   "Nilo",
+   "Hamchaoui",
+   "Sisto"
+  ]
+ },
+ "9507": {
+  "rfc_number": 9507,
+  "title": "Information-Centric Networking (ICN) Traceroute Protocol Specification",
+  "category": "Experimental",
+  "date": "2024-03",
+  "authors": [
+   "Mastorakis",
+   "Oran",
+   "Moiseenko",
+   "Gibson",
+   "Droms"
+  ]
+ },
+ "9508": {
+  "rfc_number": 9508,
+  "title": "Information-Centric Networking (ICN) Ping Protocol Specification",
+  "category": "Experimental",
+  "date": "2024-03",
+  "authors": [
+   "Mastorakis",
+   "Oran",
+   "Gibson",
+   "Moiseenko",
+   "Droms"
+  ]
+ },
+ "9509": {
+  "rfc_number": 9509,
+  "title": "X.509 Certificate Extended Key Usage (EKU) for 5G Network Functions",
+  "category": "Standards Track",
+  "date": "2024-03",
+  "authors": [
+   "Reddy.K",
+   "Ekman",
+   "Migault"
+  ]
+ },
+ "9510": {
+  "rfc_number": 9510,
+  "title": "Alternative Delta Time Encoding for Content-Centric Networking (CCNx) Using Compact Floating-Point Arithmetic",
+  "category": "Experimental",
+  "date": "2024-02",
+  "authors": [
+   "Gündoğan",
+   "Schmidt",
+   "Oran",
+   "Wählisch"
+  ]
+ },
+ "9511": {
+  "rfc_number": 9511,
+  "title": "Attribution of Internet Probes",
+  "category": "Informational",
+  "date": "2023-11",
+  "authors": [
+   "Vyncke",
+   "Donnet",
+   "Iurman"
+  ]
+ },
+ "9512": {
+  "rfc_number": 9512,
+  "title": "YAML Media Type",
+  "category": "Informational",
+  "date": "2024-02",
+  "authors": [
+   "Polli",
+   "Wilde",
+   "Aro"
+  ]
+ },
+ "9513": {
+  "rfc_number": 9513,
+  "title": "OSPFv3 Extensions for Segment Routing over IPv6 (SRv6)",
+  "category": "Standards Track",
+  "date": "2023-12",
+  "authors": [
+   "Li",
+   "Hu",
+   "Talaulikar",
+   "Psenak"
+  ]
+ },
+ "9514": {
+  "rfc_number": 9514,
+  "title": "Border Gateway Protocol - Link State (BGP-LS) Extensions for Segment Routing over IPv6 (SRv6)",
+  "category": "Standards Track",
+  "date": "2023-12",
+  "authors": [
+   "Dawra",
+   "Filsfils",
+   "Talaulikar",
+   "Chen",
+   "Bernier",
+   "Decraene"
+  ]
+ },
+ "9515": {
+  "rfc_number": 9515,
+  "title": "Revision to Registration Procedures for Multiple BMP Registries",
+  "category": "Standards Track",
+  "date": "2023-12",
+  "authors": [
+   "Scudder"
+  ]
+ },
+ "9516": {
+  "rfc_number": 9516,
+  "title": "Active Operations, Administration, and Maintenance (OAM) for Service Function Chaining (SFC)",
+  "category": "Standards Track",
+  "date": "2023-11",
+  "authors": [
+   "Mirsky",
+   "Meng",
+   "Ao",
+   "Khasnabish",
+   "Leung",
+   "Mishra"
+  ]
+ },
+ "9517": {
+  "rfc_number": 9517,
+  "title": "A URN Namespace for the Data Documentation Initiative (DDI)",
+  "category": "Informational",
+  "date": "2024-01",
+  "authors": [
+   "Wackerow"
+  ]
+ },
+ "9518": {
+  "rfc_number": 9518,
+  "title": "Centralization, Decentralization, and Internet Standards",
+  "category": "Informational",
+  "date": "2023-12",
+  "authors": [
+   "Nottingham"
+  ]
+ },
+ "9519": {
+  "rfc_number": 9519,
+  "title": "Update to the IANA SSH Protocol Parameters Registry Requirements",
+  "category": "Standards Track",
+  "date": "2024-01",
+  "authors": [
+   "Yee"
+  ]
+ },
+ "9520": {
+  "rfc_number": 9520,
+  "title": "Negative Caching of DNS Resolution Failures",
+  "category": "Standards Track",
+  "date": "2023-12",
+  "authors": [
+   "Wessels",
+   "Carroll",
+   "Thomas"
+  ]
+ },
+ "9521": {
+  "rfc_number": 9521,
+  "title": "Bidirectional Forwarding Detection (BFD) for  Generic Network Virtualization Encapsulation (Geneve)",
+  "category": "Standards Track",
+  "date": "2024-01",
+  "authors": [
+   "Min",
+   "Mirsky",
+   "Pallagatti",
+   "Tantsura",
+   "Aldrin"
+  ]
+ },
+ "9522": {
+  "rfc_number": 9522,
+  "title": "Overview and Principles of Internet Traffic Engineering",
+  "category": "Informational",
+  "date": "2024-01",
+  "authors": [
+   "Farrel"
+  ]
+ },
+ "9523": {
+  "rfc_number": 9523,
+  "title": "A Secure Selection and Filtering Mechanism for the Network Time Protocol with Khronos",
+  "category": "Informational",
+  "date": "2024-02",
+  "authors": [
+   "Rozen-Schiff",
+   "Dolev",
+   "Mizrahi",
+   "Schapira"
+  ]
+ },
+ "9524": {
+  "rfc_number": 9524,
+  "title": "Segment Routing Replication for Multipoint Service Delivery",
+  "category": "Standards Track",
+  "date": "2024-02",
+  "authors": [
+   "Voyer",
+   "Filsfils",
+   "Parekh",
+   "Bidgoli",
+   "Zhang"
+  ]
+ },
+ "9525": {
+  "rfc_number": 9525,
+  "title": "Service Identity in TLS",
+  "category": "Standards Track",
+  "date": "2023-11",
+  "authors": [
+   "Saint-Andre",
+   "Salz"
+  ]
+ },
+ "9526": {
+  "rfc_number": 9526,
+  "title": "Simple Provisioning of Public Names for Residential Networks",
+  "category": "Experimental",
+  "date": "2024-01",
+  "authors": [
+   "Migault",
+   "Weber",
+   "Richardson",
+   "Hunter"
+  ]
+ },
+ "9527": {
+  "rfc_number": 9527,
+  "title": "DHCPv6 Options for the Homenet Naming Authority",
+  "category": "Standards Track",
+  "date": "2024-01",
+  "authors": [
+   "Migault",
+   "Weber",
+   "Mrugalski"
+  ]
+ },
+ "9528": {
+  "rfc_number": 9528,
+  "title": "Ephemeral Diffie-Hellman Over COSE (EDHOC)",
+  "category": "Standards Track",
+  "date": "2024-03",
+  "authors": [
+   "Selander",
+   "Preuß Mattsson",
+   "Palombini"
+  ]
+ },
+ "9529": {
+  "rfc_number": 9529,
+  "title": "Traces of Ephemeral Diffie-Hellman Over COSE (EDHOC)",
+  "category": "Informational",
+  "date": "2024-03",
+  "authors": [
+   "Selander",
+   "Preuß Mattsson",
+   "Serafin",
+   "Tiloca",
+   "Vučinić"
+  ]
+ }
+}

@@ -1,0 +1,390 @@
+{
+ "groups": [
+  {
+   "model": "gpt-6-sol",
+   "conc": 1,
+   "type": "code",
+   "tasks": 30,
+   "succeeded": 30,
+   "success_pct": 100.0,
+   "requests": 31,
+   "requests_billed": 31,
+   "retried_tasks": 1,
+   "no_model_call": 0,
+   "task_ms_p50": 7632,
+   "task_ms_p90": 13133,
+   "wall_s": 317.2,
+   "input_tokens": 17118,
+   "output_tokens": 9052,
+   "cost_total_usd": 0.0499,
+   "cost_per_task_usd": 0.00166,
+   "cost_per_success_usd": 0.00166
+  },
+  {
+   "model": "gpt-6-sol",
+   "conc": 1,
+   "type": "extract",
+   "tasks": 30,
+   "succeeded": 30,
+   "success_pct": 100.0,
+   "requests": 30,
+   "requests_billed": 30,
+   "retried_tasks": 0,
+   "no_model_call": 0,
+   "task_ms_p50": 4898,
+   "task_ms_p90": 6649,
+   "wall_s": 160.7,
+   "input_tokens": 8836,
+   "output_tokens": 2519,
+   "cost_total_usd": 0.0171,
+   "cost_per_task_usd": 0.00057,
+   "cost_per_success_usd": 0.00057,
+   "fields_correct_mean": 5,
+   "field_accuracy_pct": {
+    "rfc_number": 100.0,
+    "title": 100.0,
+    "category": 100.0,
+    "date": 100.0,
+    "authors": 100.0
+   }
+  },
+  {
+   "model": "gpt-6-sol",
+   "conc": 1,
+   "type": "workflow",
+   "tasks": 30,
+   "succeeded": 27,
+   "success_pct": 90.0,
+   "requests": 27,
+   "requests_billed": 27,
+   "retried_tasks": 0,
+   "no_model_call": 3,
+   "task_ms_p50": 3927,
+   "task_ms_p90": 4930,
+   "wall_s": 120.1,
+   "input_tokens": 4166,
+   "output_tokens": 1243,
+   "cost_total_usd": 0.0083,
+   "cost_per_task_usd": 0.00028,
+   "cost_per_success_usd": 0.00031
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "code",
+   "tasks": 30,
+   "succeeded": 30,
+   "success_pct": 100.0,
+   "requests": 31,
+   "requests_billed": 30,
+   "retried_tasks": 1,
+   "no_model_call": 0,
+   "task_ms_p50": 15381,
+   "task_ms_p90": 35315,
+   "wall_s": 594.3,
+   "input_tokens": 25084,
+   "output_tokens": 34456,
+   "cost_total_usd": 0.2769,
+   "cost_per_task_usd": 0.00923,
+   "cost_per_success_usd": 0.00923
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "extract",
+   "tasks": 30,
+   "succeeded": 30,
+   "success_pct": 100.0,
+   "requests": 30,
+   "requests_billed": 30,
+   "retried_tasks": 0,
+   "no_model_call": 0,
+   "task_ms_p50": 5440,
+   "task_ms_p90": 14620,
+   "wall_s": 241.0,
+   "input_tokens": 13848,
+   "output_tokens": 10515,
+   "cost_total_usd": 0.093,
+   "cost_per_task_usd": 0.0031,
+   "cost_per_success_usd": 0.0031,
+   "fields_correct_mean": 4.97,
+   "field_accuracy_pct": {
+    "rfc_number": 100.0,
+    "title": 100.0,
+    "category": 100.0,
+    "date": 100.0,
+    "authors": 96.7
+   }
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "workflow",
+   "tasks": 30,
+   "succeeded": 27,
+   "success_pct": 90.0,
+   "requests": 28,
+   "requests_billed": 27,
+   "retried_tasks": 1,
+   "no_model_call": 3,
+   "task_ms_p50": 2979,
+   "task_ms_p90": 9448,
+   "wall_s": 182.2,
+   "input_tokens": 6230,
+   "output_tokens": 1822,
+   "cost_total_usd": 0.0215,
+   "cost_per_task_usd": 0.00072,
+   "cost_per_success_usd": 0.0008
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 5,
+   "type": "code",
+   "tasks": 30,
+   "succeeded": 30,
+   "success_pct": 100.0,
+   "requests": 31,
+   "requests_billed": 31,
+   "retried_tasks": 1,
+   "no_model_call": 0,
+   "task_ms_p50": 11337,
+   "task_ms_p90": 20244,
+   "wall_s": 103.2,
+   "input_tokens": 27509,
+   "output_tokens": 26776,
+   "cost_total_usd": 0.2268,
+   "cost_per_task_usd": 0.00756,
+   "cost_per_success_usd": 0.00756
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 5,
+   "type": "extract",
+   "tasks": 30,
+   "succeeded": 30,
+   "success_pct": 100.0,
+   "requests": 30,
+   "requests_billed": 30,
+   "retried_tasks": 0,
+   "no_model_call": 0,
+   "task_ms_p50": 6920,
+   "task_ms_p90": 18173,
+   "wall_s": 67.1,
+   "input_tokens": 13848,
+   "output_tokens": 12494,
+   "cost_total_usd": 0.1068,
+   "cost_per_task_usd": 0.00356,
+   "cost_per_success_usd": 0.00356,
+   "fields_correct_mean": 4.93,
+   "field_accuracy_pct": {
+    "rfc_number": 100.0,
+    "title": 100.0,
+    "category": 100.0,
+    "date": 100.0,
+    "authors": 93.3
+   }
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 5,
+   "type": "workflow",
+   "tasks": 30,
+   "succeeded": 26,
+   "success_pct": 86.7,
+   "requests": 27,
+   "requests_billed": 27,
+   "retried_tasks": 0,
+   "no_model_call": 3,
+   "task_ms_p50": 2771,
+   "task_ms_p90": 3439,
+   "wall_s": 18.8,
+   "input_tokens": 6230,
+   "output_tokens": 2017,
+   "cost_total_usd": 0.0228,
+   "cost_per_task_usd": 0.00076,
+   "cost_per_success_usd": 0.00088
+  }
+ ],
+ "non200": [
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "code",
+   "task": "max_sublist_sum",
+   "status": 502,
+   "error": "http_502",
+   "at": "2026-10-01T13:44:53Z"
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "workflow",
+   "task": "q14",
+   "status": 502,
+   "error": "http_502",
+   "at": "2026-10-01T13:55:29Z"
+  }
+ ],
+ "failures": [
+  {
+   "model": "gpt-6-sol",
+   "conc": 1,
+   "type": "workflow",
+   "task": "q04",
+   "attempts": 0,
+   "reason": "retrieval empty",
+   "retrieved": [],
+   "cited": null,
+   "final": "NEEDS_HUMAN (no model call)",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "gpt-6-sol",
+   "conc": 1,
+   "type": "workflow",
+   "task": "q06",
+   "attempts": 1,
+   "reason": null,
+   "retrieved": [
+    "refund"
+   ],
+   "cited": [
+    "NEEDS_HUMAN"
+   ],
+   "final": "NEEDS_HUMAN",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "gpt-6-sol",
+   "conc": 1,
+   "type": "workflow",
+   "task": "q23",
+   "attempts": 1,
+   "reason": null,
+   "retrieved": [
+    "delete-account"
+   ],
+   "cited": [
+    "NEEDS_HUMAN"
+   ],
+   "final": "NEEDS_HUMAN",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "workflow",
+   "task": "q04",
+   "attempts": 0,
+   "reason": "retrieval empty",
+   "retrieved": [],
+   "cited": null,
+   "final": "NEEDS_HUMAN (no model call)",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "workflow",
+   "task": "q06",
+   "attempts": 1,
+   "reason": null,
+   "retrieved": [
+    "refund"
+   ],
+   "cited": [
+    "NEEDS_HUMAN"
+   ],
+   "final": "NEEDS_HUMAN",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 1,
+   "type": "workflow",
+   "task": "q14",
+   "attempts": 2,
+   "reason": null,
+   "retrieved": [
+    "api-key",
+    "limits"
+   ],
+   "cited": [
+    "NEEDS_HUMAN"
+   ],
+   "final": "NEEDS_HUMAN",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 5,
+   "type": "workflow",
+   "task": "q04",
+   "attempts": 0,
+   "reason": "retrieval empty",
+   "retrieved": [],
+   "cited": null,
+   "final": "NEEDS_HUMAN (no model call)",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 5,
+   "type": "workflow",
+   "task": "q06",
+   "attempts": 1,
+   "reason": null,
+   "retrieved": [
+    "refund"
+   ],
+   "cited": [
+    "NEEDS_HUMAN"
+   ],
+   "final": "NEEDS_HUMAN",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 5,
+   "type": "workflow",
+   "task": "q14",
+   "attempts": 1,
+   "reason": null,
+   "retrieved": [
+    "api-key",
+    "limits"
+   ],
+   "cited": [
+    "NEEDS_HUMAN"
+   ],
+   "final": "NEEDS_HUMAN",
+   "fields_correct": null,
+   "fields": null
+  },
+  {
+   "model": "claude-sonnet-5",
+   "conc": 5,
+   "type": "workflow",
+   "task": "q30",
+   "attempts": 1,
+   "reason": null,
+   "retrieved": [
+    "reset-password"
+   ],
+   "cited": [
+    "reset-password"
+   ],
+   "final": "NEEDS_HUMAN\n\nThe FAQ entry provided (password reset) doesn't address data processing agreements or contract signing. A human should handle this request.\n\n(FAQ: reset-password)",
+   "fields_correct": null,
+   "fields": null
+  }
+ ]
+}

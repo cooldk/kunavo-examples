@@ -1,0 +1,152 @@
+[
+ {
+  "id": "q01",
+  "expected": "refund",
+  "question": "I bought credit last week by mistake. Can I get a refund?"
+ },
+ {
+  "id": "q02",
+  "expected": "refund",
+  "question": "How long do I have to request a refund for unused balance?"
+ },
+ {
+  "id": "q03",
+  "expected": "refund",
+  "question": "Is it possible to get my prepaid balance refunded?"
+ },
+ {
+  "id": "q04",
+  "expected": "refund",
+  "question": "I want my money back for the top-up I made yesterday."
+ },
+ {
+  "id": "q05",
+  "expected": "invoice",
+  "question": "Where can I download a receipt for my payment?"
+ },
+ {
+  "id": "q06",
+  "expected": "invoice",
+  "question": "I need an invoice for last month's purchase for accounting."
+ },
+ {
+  "id": "q07",
+  "expected": "invoice",
+  "question": "How do I get receipts for my payments?"
+ },
+ {
+  "id": "q08",
+  "expected": "invoice",
+  "question": "Can you send me the receipt for my top-up?"
+ },
+ {
+  "id": "q09",
+  "expected": "reset-password",
+  "question": "I forgot my password, how do I reset it?"
+ },
+ {
+  "id": "q10",
+  "expected": "reset-password",
+  "question": "The password reset link expired. What now?"
+ },
+ {
+  "id": "q11",
+  "expected": "reset-password",
+  "question": "I can't sign in, I don't remember my password."
+ },
+ {
+  "id": "q12",
+  "expected": "reset-password",
+  "question": "How do I change my password if I lost it?"
+ },
+ {
+  "id": "q13",
+  "expected": "api-key",
+  "question": "How do I rotate my API key?"
+ },
+ {
+  "id": "q14",
+  "expected": "api-key",
+  "question": "I accidentally pushed my API key to GitHub. What should I do?"
+ },
+ {
+  "id": "q15",
+  "expected": "api-key",
+  "question": "Where do I create a new key for my app?"
+ },
+ {
+  "id": "q16",
+  "expected": "api-key",
+  "question": "Can I have two keys at the same time while I switch over?"
+ },
+ {
+  "id": "q17",
+  "expected": "limits",
+  "question": "I'm getting 429 errors. What are the rate limits?"
+ },
+ {
+  "id": "q18",
+  "expected": "limits",
+  "question": "How many requests per minute can one key make?"
+ },
+ {
+  "id": "q19",
+  "expected": "limits",
+  "question": "What does HTTP 429 mean and how should I retry?"
+ },
+ {
+  "id": "q20",
+  "expected": "limits",
+  "question": "Is there a limit on requests per minute?"
+ },
+ {
+  "id": "q21",
+  "expected": "delete-account",
+  "question": "How do I delete my account?"
+ },
+ {
+  "id": "q22",
+  "expected": "delete-account",
+  "question": "What happens to my balance if I close my account?"
+ },
+ {
+  "id": "q23",
+  "expected": "delete-account",
+  "question": "Please remove my account and all my data."
+ },
+ {
+  "id": "q24",
+  "expected": "delete-account",
+  "question": "I want to delete my account, where is the option?"
+ },
+ {
+  "id": "q25",
+  "expected": "NEEDS_HUMAN",
+  "question": "Do you offer an on-premise version for air-gapped networks?"
+ },
+ {
+  "id": "q26",
+  "expected": "NEEDS_HUMAN",
+  "question": "Is my API key stored encrypted at rest, and in which data center region?"
+ },
+ {
+  "id": "q27",
+  "expected": "NEEDS_HUMAN",
+  "question": "Can I pay with a bank transfer instead of a card?"
+ },
+ {
+  "id": "q28",
+  "expected": "NEEDS_HUMAN",
+  "question": "Do you have a SOC 2 report I can review?"
+ },
+ {
+  "id": "q29",
+  "expected": "NEEDS_HUMAN",
+  "question": "Which models support image input?"
+ },
+ {
+  "id": "q30",
+  "expected": "NEEDS_HUMAN",
+  "question": "Can you sign our data processing agreement?"
+ }
+]

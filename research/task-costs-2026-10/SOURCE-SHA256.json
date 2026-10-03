@@ -1,0 +1,15 @@
+{
+  "run_b02.py": "3a867a4f631c79028a416507f48c55058b0ee4d152f6b086c12910a6024ee7e9",
+  "summarize.py": "7b651d9530762b52dcff1e849f1e867d056f20eaaf319245daa6617956fe9fb6",
+  "code-repair-programs.json": "00bb66ebce90d921e75c2ba00062e518a36cff77647788c3d9337fe8e0cf412d",
+  "extraction-labels.json": "af03599208bb4882aaef7b31862202684cf51c51cd75f1824a4836d94b84a0a9",
+  "extraction-rfcs.json": "3b5545fe2f9638970d8812eb13a3676f2fa73d964fbc5527ed11a00449d21b84",
+  "workflow-questions.json": "8e966782a6c97a0f95afaa4311c8fd71e91e3387f6e61bf1c0bbc66e879ba39e",
+  "PREREG.md": "3daf2e314300cebfc452702122238cfaaf4e30a27793e6e4e51f86fa5c5dcee2",
+  "REPORT.md": "25a8be00866ffc32b304939f6a84b82b1d9c902ba43e4a767797dcc459605177",
+  "runs/billing.json": "79964fbcf725c95e5a128b54857a32e64c33c5a9acff74a1da36268efe282d7f",
+  "runs/gpt6sol-c1.jsonl": "4e882bbcbae6c87348ed94aff850a51b340c98d860f022fcfe4e863e782256d7",
+  "runs/sonnet5-c1.jsonl": "e0d785238c68975c237500283a849094858008b664409aebf8d277120da9f136",
+  "runs/sonnet5-c5.jsonl": "0a313a7a23327b148668f00deed54af1716def3cfc3bbe2ac5dc0c57098349c1",
+  "runs/summary.json": "9c8d8ad11b83600c10ccfafddecd1e71053244fcfbbd496e9e604c9ab95df0cb"
+}
