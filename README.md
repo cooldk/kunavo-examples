@@ -62,6 +62,9 @@ Prompt caching is billed at the cache-read rate on every model that supports it,
 | [`node/chat.mjs`](node/chat.mjs) | Node.js — OpenAI SDK against Claude |
 | [`node/image.mjs`](node/image.mjs) | Node.js — Nano Banana image generation |
 | [`shell/curl.sh`](shell/curl.sh) | Raw curl for every endpoint |
+| [`migrate-from-openrouter/`](migrate-from-openrouter/) | Python and Node scripts that map model ids against the live catalog and flag provider-specific request fields |
+| [`compat-test/`](compat-test/) | Eight protocol checks for an OpenAI-compatible endpoint; one Node file, no dependencies |
+| [`n8n-templates/`](n8n-templates/) | Three importable workflows: validated extraction, FAQ reply drafts and RSS drafts, with human review |
 
 ## Two wire formats, one key
 

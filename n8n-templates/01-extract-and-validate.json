@@ -1,0 +1,473 @@
+{
+  "name": "Extract and validate contact details from form submissions with an LLM",
+  "nodes": [
+    {
+      "id": "10d7215a-b542-5305-9cbc-137097dec89f",
+      "name": "About this workflow",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -260
+      ],
+      "parameters": {
+        "content": "## Extract and validate contact details from a form\n\nSomeone pastes an email, a signature or a note. A chat model returns the details as JSON, a Code node checks every field, and a failed answer gets **one** corrected retry with the errors spelled out. If it still fails, the form asks the person to fill in the fields themselves, so nothing is lost and nothing is guessed.\n\n**Setup (2 minutes)**\n1. Open *Chat model* and pick or create an **OpenAI** credential.\n2. Any OpenAI-compatible provider works: set the credential's **Base URL** to your provider's address. It must end in `/v1`, or the credential test passes and every run fails.\n3. Set the model id your provider serves. Leave temperature at its default: some models reject non-default values.\n4. Activate and open the form URL from the trigger.\n\nOptional: [using this with Kunavo](https://kunavo.com/docs/integrations/n8n?utm_source=n8n-templates&utm_medium=template&utm_campaign=i06-extract-validate).",
+        "height": 520,
+        "width": 520
+      }
+    },
+    {
+      "id": "d61f4fda-bb64-5c38-aa62-3926e22ef0f3",
+      "name": "Retry and hand-off",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        900,
+        260
+      ],
+      "parameters": {
+        "content": "### One retry, then a person\nThe retry sends the original text, the previous answer and the exact validation errors. Two model calls is the most a submission can cost. After that the submitter sees a short form with the fields to fill in.",
+        "height": 200,
+        "width": 440,
+        "color": 5
+      }
+    },
+    {
+      "id": "e6dc7faa-99ab-56da-b55e-019b007abca5",
+      "name": "Form: paste text",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "formTitle": "Extract contact details",
+        "formDescription": "Paste an email, a signature or a note. We pull out the contact details for you.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Text",
+              "fieldType": "textarea",
+              "placeholder": "Hi, I'm Dana Ruiz from Northwind. Reach me at dana@northwind.example ...",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "webhookId": "3d2127a8-d6bf-5370-b55b-da0007a11bd4"
+    },
+    {
+      "id": "ee00041b-2ff9-5d1a-83f6-636e55c6b32f",
+      "name": "Extract with LLM",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.Text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "SystemMessagePromptTemplate",
+              "message": "You extract contact details from text a person pasted into a form.\nReturn ONLY a JSON object, no prose and no code fences, with exactly these keys:\n- \"name\": the person's full name, or null if not present\n- \"email\": their email address, or null if not present\n- \"company\": their company or organisation, or null if not present\n- \"intent\": one of \"buy\", \"support\", \"partnership\", \"other\"\n- \"summary\": one sentence (max 200 characters) saying what they want\nNever invent an email address or a company that is not in the text."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "77bf39f4-8604-55f7-a325-eb28241b6e11",
+      "name": "Chat model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        220
+      ],
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "claude-sonnet-5"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      }
+    },
+    {
+      "id": "ac0785c3-306d-5397-a037-8cc6c58dee4e",
+      "name": "Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// Parse and check the model's answer. Nothing here trusts the model:\n// a field that fails a rule is reported, not repaired.\nconst INTENTS = ['buy', 'support', 'partnership', 'other'];\nconst EMAIL = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/;\n\nreturn $input.all().map((item) => {\n  const raw = String(item.json.text ?? '');\n    const errors = [];\n  let data = null;\n  try {\n    // Models sometimes wrap JSON in ``` fences despite the instruction.\n    data = JSON.parse(raw.replace(/^\\s*```(?:json)?\\s*/i, '').replace(/\\s*```\\s*$/, ''));\n  } catch (e) {\n    errors.push('The answer is not valid JSON.');\n  }\n  if (!data || typeof data !== 'object' || Array.isArray(data)) {\n    errors.push('The answer must be a JSON object.');\n  } else {\n    for (const k of ['name', 'email', 'company', 'intent', 'summary']) {\n      if (!(k in data)) errors.push(`Missing key \"${k}\".`);\n    }\n    if (data.email !== null && data.email !== undefined && !EMAIL.test(String(data.email))) {\n      errors.push(`\"email\" is not an email address: ${data.email}`);\n    }\n    if (!INTENTS.includes(data.intent)) {\n      errors.push(`\"intent\" must be one of ${INTENTS.join(', ')}.`);\n    }\n    if (typeof data.summary !== 'string' || data.summary.length === 0 || data.summary.length > 200) {\n      errors.push('\"summary\" must be a sentence of at most 200 characters.');\n    }\n    if (!data.name && !data.email) {\n      errors.push('Neither a name nor an email was found.');\n    }\n  }\n  return { json: { valid: errors.length === 0, errors, data, raw, source: $('Form: paste text').first().json.Text } };\n});"
+      }
+    },
+    {
+      "id": "c31a49d0-9a4a-51c8-b7f3-5a0f46f06fe7",
+      "name": "Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        700,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4c0d95f7-dddf-5455-96c5-7ba5b0cf8398",
+              "leftValue": "={{ $json.valid }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "331da78d-aec1-573d-9645-ecd63787d063",
+      "name": "Retry with errors",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        920,
+        120
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=Text:\n{{ $json.source }}\n\nYour previous answer:\n{{ $json.raw }}\n\nValidation errors:\n{{ $json.errors.join('\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "type": "SystemMessagePromptTemplate",
+              "message": "You extract contact details from text a person pasted into a form.\nReturn ONLY a JSON object, no prose and no code fences, with exactly these keys:\n- \"name\": the person's full name, or null if not present\n- \"email\": their email address, or null if not present\n- \"company\": their company or organisation, or null if not present\n- \"intent\": one of \"buy\", \"support\", \"partnership\", \"other\"\n- \"summary\": one sentence (max 200 characters) saying what they want\nNever invent an email address or a company that is not in the text.\nYour previous answer failed validation. Fix ONLY what the errors name and return the corrected JSON object.\nIf a value is genuinely not in the text, use null instead of guessing."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "cc86010a-65c7-5dbf-8024-d069a1cd4542",
+      "name": "Chat model (retry)",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        920,
+        340
+      ],
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "claude-sonnet-5"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      }
+    },
+    {
+      "id": "eea40924-bd6d-568b-9877-785c999a1242",
+      "name": "Validate retry",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        120
+      ],
+      "parameters": {
+        "jsCode": "// Parse and check the model's answer. Nothing here trusts the model:\n// a field that fails a rule is reported, not repaired.\nconst INTENTS = ['buy', 'support', 'partnership', 'other'];\nconst EMAIL = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/;\n\nreturn $input.all().map((item) => {\n  const raw = String(item.json.text ?? '');\n    const errors = [];\n  let data = null;\n  try {\n    // Models sometimes wrap JSON in ``` fences despite the instruction.\n    data = JSON.parse(raw.replace(/^\\s*```(?:json)?\\s*/i, '').replace(/\\s*```\\s*$/, ''));\n  } catch (e) {\n    errors.push('The answer is not valid JSON.');\n  }\n  if (!data || typeof data !== 'object' || Array.isArray(data)) {\n    errors.push('The answer must be a JSON object.');\n  } else {\n    for (const k of ['name', 'email', 'company', 'intent', 'summary']) {\n      if (!(k in data)) errors.push(`Missing key \"${k}\".`);\n    }\n    if (data.email !== null && data.email !== undefined && !EMAIL.test(String(data.email))) {\n      errors.push(`\"email\" is not an email address: ${data.email}`);\n    }\n    if (!INTENTS.includes(data.intent)) {\n      errors.push(`\"intent\" must be one of ${INTENTS.join(', ')}.`);\n    }\n    if (typeof data.summary !== 'string' || data.summary.length === 0 || data.summary.length > 200) {\n      errors.push('\"summary\" must be a sentence of at most 200 characters.');\n    }\n    if (!data.name && !data.email) {\n      errors.push('Neither a name nor an email was found.');\n    }\n  }\n  return { json: { valid: errors.length === 0, errors, data, raw, source: $('Form: paste text').first().json.Text } };\n});"
+      }
+    },
+    {
+      "id": "e903df40-ed90-53b8-a25e-9c6d27909510",
+      "name": "Valid after retry?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1380,
+        120
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a578de6f-a117-5952-829d-1e85938dece9",
+              "leftValue": "={{ $json.valid }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "4d52103c-cf7d-5430-bb75-d521ded5b714",
+      "name": "Ask the person",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        1600,
+        240
+      ],
+      "parameters": {
+        "operation": "page",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "fieldType": "text"
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Company",
+              "fieldType": "text"
+            },
+            {
+              "fieldLabel": "Intent",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Buy"
+                  },
+                  {
+                    "option": "Support"
+                  },
+                  {
+                    "option": "Partnership"
+                  },
+                  {
+                    "option": "Other"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "What do you need?",
+              "fieldType": "textarea",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Please check your details",
+          "formDescription": "We could not read all of your details automatically. Fill in what you can."
+        }
+      },
+      "webhookId": "26f3aaf0-b482-5027-b0e4-3c2d239f5124"
+    },
+    {
+      "id": "dedb9ac7-42e8-537c-8ede-265dcb79f570",
+      "name": "Use the person's answer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1820,
+        240
+      ],
+      "parameters": {
+        "jsCode": "// The person filled in what the model could not. Their answer wins.\nconst f = $input.first().json;\nreturn [{ json: {\n  valid: true,\n  reviewedByPerson: true,\n  data: {\n    name: f['Name'] || null,\n    email: f['Email'] || null,\n    company: f['Company'] || null,\n    intent: (f['Intent'] || 'other').toLowerCase(),\n    summary: f['What do you need?'] || '',\n  },\n} }];"
+      }
+    },
+    {
+      "id": "2af88565-cd13-521e-bf2d-f605c2ee96a0",
+      "name": "Show result",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        2040,
+        0
+      ],
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "text",
+        "completionTitle": "Here is what we extracted",
+        "completionMessage": "=Name: {{ $json.data.name ?? '—' }}\nEmail: {{ $json.data.email ?? '—' }}\nCompany: {{ $json.data.company ?? '—' }}\nIntent: {{ $json.data.intent }}\nSummary: {{ $json.data.summary }}",
+        "options": {}
+      },
+      "webhookId": "6554e5b8-9242-5e73-94d5-11a298edec3e"
+    }
+  ],
+  "connections": {
+    "Form: paste text": {
+      "main": [
+        [
+          {
+            "node": "Extract with LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extract with LLM",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract with LLM": {
+      "main": [
+        [
+          {
+            "node": "Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate": {
+      "main": [
+        [
+          {
+            "node": "Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid?": {
+      "main": [
+        [
+          {
+            "node": "Show result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Retry with errors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat model (retry)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Retry with errors",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retry with errors": {
+      "main": [
+        [
+          {
+            "node": "Validate retry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate retry": {
+      "main": [
+        [
+          {
+            "node": "Valid after retry?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid after retry?": {
+      "main": [
+        [
+          {
+            "node": "Show result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ask the person",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ask the person": {
+      "main": [
+        [
+          {
+            "node": "Use the person's answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Use the person's answer": {
+      "main": [
+        [
+          {
+            "node": "Show result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {}
+}
