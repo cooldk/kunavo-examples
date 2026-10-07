@@ -64,6 +64,7 @@ Prompt caching is billed at the cache-read rate on every model that supports it,
 | [`shell/curl.sh`](shell/curl.sh) | Raw curl for every endpoint |
 | [`migrate-from-openrouter/`](migrate-from-openrouter/) | Python and Node scripts that map model ids against the live catalog and flag provider-specific request fields |
 | [`compat-test/`](compat-test/) | Eight protocol checks for an OpenAI-compatible endpoint; one Node file, no dependencies |
+| [`agent-cost-audit/`](agent-cost-audit/) | Offline task-cost calculator: cache writes/reads, retries, rejected work and separate health checks; synthetic fixture and tests |
 | [`n8n-templates/`](n8n-templates/) | Three importable workflows: validated extraction, FAQ reply drafts and RSS drafts, with human review |
 | [`research/task-costs-2026-10/`](research/task-costs-2026-10/) | All 270 task runs, per-request billing and the harness behind a small first-party cost study |
 

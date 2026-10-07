@@ -1,0 +1,16 @@
+{
+  "description": "Synthetic counts and hypothetical rates; not customer data or a provider price quote.",
+  "prices_usd_per_million": {"uncached_input": "3", "cache_write": "3.75", "cache_read": "0.30", "output": "15"},
+  "tasks": [
+    {"id": "code-review-a", "kind": "work", "accepted": true, "attempts": [
+      {"uncached_input": 10000, "cache_write": 40000, "cache_read": 0, "output": 1000},
+      {"uncached_input": 5000, "cache_write": 0, "cache_read": 45000, "output": 500}
+    ]},
+    {"id": "code-review-b", "kind": "work", "accepted": false, "attempts": [
+      {"uncached_input": 10000, "cache_write": 0, "cache_read": 40000, "output": 1000}
+    ]},
+    {"id": "healthcheck-a", "kind": "healthcheck", "accepted": false, "attempts": [
+      {"uncached_input": 8, "cache_write": 0, "cache_read": 0, "output": 1}
+    ]}
+  ]
+}
