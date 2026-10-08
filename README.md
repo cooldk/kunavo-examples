@@ -45,7 +45,7 @@ Rates below are Kunavo's, in USD, and were taken from the public catalog ([llms.
 
 **Video** — per clip: `veo-3-lite` from $0.18, `veo-3` from $0.36, `veo-3-quality` from $1.60. Per second of video: `seedance-2-mini` from $0.0526, `wan-2-7` from $0.096, `seedance-2-fast` from $0.198, `seedance-2` from $0.246, `seedance-2-5` from $0.3784.
 
-**Music** (per track) — `suno-v5` $0.09, `suno-v5-5`.
+**Music** (per generation request, checked 2026-10-09) — `suno-v5` / `suno-v5-5`: $0.09; one request returns two track variations for one charge. See [current music documentation](https://kunavo.com/docs/music).
 
 Prompt caching is billed at the cache-read rate on every model that supports it, which on a repeated-context workload moves the bill more than the model choice does — see [caching](https://kunavo.com/docs/caching).
 
@@ -59,6 +59,7 @@ Prompt caching is billed at the cache-read rate on every model that supports it,
 | [`python/image_edit.py`](python/image_edit.py) | Image-to-image editing (`/v1/images/edits`) |
 | [`python/video.py`](python/video.py) | Veo 3 text-to-video with the async task lifecycle (`/v1/videos`) |
 | [`python/music.py`](python/music.py) | Suno V5 song generation with job polling (`/v1/audio/music/jobs`) |
+| [`music-job-recovery/`](music-job-recovery/) | Offline recovery decisions: lost submit response, known task ID, bounded polling and archive fallback; synthetic scenarios and tests |
 | [`node/chat.mjs`](node/chat.mjs) | Node.js — OpenAI SDK against Claude |
 | [`node/image.mjs`](node/image.mjs) | Node.js — Nano Banana image generation |
 | [`shell/curl.sh`](shell/curl.sh) | Raw curl for every endpoint |

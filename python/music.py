@@ -35,4 +35,7 @@ if status == "failed":
     raise SystemExit(f"generation failed: {j['error']['message']}")
 # Suno returns ~2 tracks per request for a single charge.
 for track in j["output"]["tracks"]:
-    print(track["url"])  # temporary URLs — download and re-host
+    print(track["url"])
+if not j["output"].get("archived", False):
+    print("Archive fallback: these URLs may be temporary; arrange a durable copy.")
+# For recovery decisions after a timeout, see music-job-recovery/.
