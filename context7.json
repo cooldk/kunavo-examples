@@ -1,0 +1,22 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Kunavo Examples",
+  "description": "Operator-maintained examples for the Kunavo AI API gateway: SDK requests, model migration, endpoint checks, n8n workflows, usage CSV export and offline task-cost and recovery examples.",
+  "branch": "main",
+  "folders": [],
+  "excludeFolders": [
+    "research/task-costs-2026-10/runs"
+  ],
+  "excludeFiles": [
+    "SOURCE-SHA256.json",
+    ".gitignore"
+  ],
+  "rules": [
+    "OpenAI-style clients use https://api.kunavo.com/v1. Anthropic-style clients that append /v1/messages use https://api.kunavo.com.",
+    "Resolve exact model IDs, endpoint types, capabilities and limits against the live /v1/models catalog; example IDs may become unavailable.",
+    "Use https://kunavo.com/pricing.json for current rates and billing units. Archived research data and synthetic fixtures are not current price quotes.",
+    "The usage-daily, agent-cost-audit and music-job-recovery fixtures and tests validate offline behavior; they do not prove live API compatibility or production reliability.",
+    "GET /v1/usage reports only the calling key. Daily buckets use UTC. Parse cost_usd as a decimal string and do not sum overlapping snapshots.",
+    "For asynchronous media jobs, retain the task ID and poll that job. A client timeout leaves the result uncertain; it does not establish that the job failed."
+  ]
+}

@@ -2,7 +2,9 @@
 
 Runnable examples for [Kunavo](https://kunavo.com) — an independent, OpenAI-compatible AI API gateway: one API key and one pay-as-you-go balance reach Claude, GPT and image, video and audio models, with no per-provider account required.
 
-If your code can call the OpenAI API, it can call Kunavo by changing one line:
+Maintained by Kunavo's operator. Code and documentation are prepared with AI assistance. The offline examples below document their validation and limitations.
+
+For supported Chat Completions requests, configure the OpenAI SDK with your Kunavo key and base URL:
 
 ```python
 import os
@@ -10,10 +12,10 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ["KUNAVO_API_KEY"],          # sk-kn-...
-    base_url="https://api.kunavo.com/v1",          # the only line that changes
+    base_url="https://api.kunavo.com/v1",          # Kunavo Chat Completions endpoint
 )
 resp = client.chat.completions.create(
-    model="claude-sonnet-5",
+    model="claude-sonnet-5",                    # verify availability in /v1/models
     messages=[{"role": "user", "content": "Hello"}],
 )
 ```
@@ -26,28 +28,21 @@ Kunavo is an independent gateway that resells access to these models. Kunavo is 
 2. `export KUNAVO_API_KEY=sk-kn-...`
 3. Run any example below.
 
-## What you can call with that one key
+## Discover models and current prices
 
-Rates below are Kunavo's, in USD, and were taken from the public catalog ([llms.txt](https://kunavo.com/llms.txt)) on 2026-10-01; models that are temporarily off sale are left out. A model you call that is off sale returns an error naming the model to use instead. [Live pricing](https://kunavo.com/pricing) is authoritative; `GET /v1/models` is the live catalog.
+Examples show specific model IDs to make requests concrete. Before using them, check the [live model catalog](https://api.kunavo.com/v1/models) for availability, endpoint, capabilities and limits. Model IDs are exact strings; a sample or an archived study is not a promise that a model is currently available.
 
-**Chat** — per 1M tokens, input / output:
+Use [live pricing](https://kunavo.com/pricing) or the [machine-readable price catalog](https://kunavo.com/pricing.json) for current rates and billing units. This README does not maintain a separate price table. Media pricing can depend on duration or tier; token pricing can distinguish ordinary input, cache writes, cache reads and output. See [billing](https://kunavo.com/docs/billing) and [prompt caching](https://kunavo.com/docs/caching).
 
-| Model id | In / out | Notes |
-|---|---|---|
-| `claude-sonnet-5` | $1.40 / $7.00 | the general default |
-| `claude-opus-5-5` | $2.80 / $14.00 | planning, architecture, hard reasoning |
-| `claude-haiku-4-5` | $0.70 / $3.50 | high-volume work; cheapest Claude |
-| `gpt-6-sol` | $0.80 / $4.00 | GPT with long context |
-| `gpt-5-6-sol` | $2.00 / $12.00 | also reachable on `/v1/responses` (Codex CLI) |
-| `gpt-6-luna` | $0.04 / $0.20 | cheapest text model in the catalog |
+## Start without making a live API call
 
-**Image** (per image) — `nano-banana-2-lite` $0.0255, `nano-banana` $0.0273, `nano-banana-2` from $0.0469, `ideogram-v3` from $0.0525, `gpt-image-2` $0.0633, `nano-banana-pro` from $0.067, plus `nano-banana-edit`, `gpt-image-2-edit` and `ideogram-v3-edit` for editing.
+These examples can be inspected and tested with synthetic data, without an account or API key:
 
-**Video** — per clip: `veo-3-lite` from $0.18, `veo-3` from $0.36, `veo-3-quality` from $1.60. Per second of video: `seedance-2-mini` from $0.0526, `wan-2-7` from $0.096, `seedance-2-fast` from $0.198, `seedance-2` from $0.246, `seedance-2-5` from $0.3784.
+- [`usage-daily/`](usage-daily/) converts a single key's usage snapshot to daily CSV, preserving decimal costs and UTC boundaries.
+- [`agent-cost-audit/`](agent-cost-audit/) compares task costs while separating retries, rejected work and health checks.
+- [`music-job-recovery/`](music-job-recovery/) plans recovery after an uncertain submission, with bounded polling and explicit resubmission decisions.
 
-**Music** (per generation request, checked 2026-10-09) — `suno-v5` / `suno-v5-5`: $0.09; one request returns two track variations for one charge. See [current music documentation](https://kunavo.com/docs/music).
-
-Prompt caching is billed at the cache-read rate on every model that supports it, which on a repeated-context workload moves the bill more than the model choice does — see [caching](https://kunavo.com/docs/caching).
+Their offline tests validate local behavior, not live model compatibility, billing correctness or production reliability. Follow each directory's README for commands and limits.
 
 ## Examples
 
@@ -72,7 +67,7 @@ Prompt caching is billed at the cache-read rate on every model that supports it,
 
 ## Two wire formats, one key
 
-`/v1/chat/completions`, `/v1/responses` and the media routes speak the OpenAI formats. `/v1/messages` speaks the Anthropic Messages format, so an Anthropic SDK works unmodified.
+`/v1/chat/completions` and `/v1/responses` expose their respective OpenAI-compatible request formats. `/v1/messages` exposes the Anthropic Messages format. Media endpoints have their own request and asynchronous-task contracts; consult the endpoint documentation instead of assuming every SDK method is supported.
 
 The two conventions disagree about `/v1` on purpose, and getting it backwards is the most common setup failure:
 
@@ -81,7 +76,7 @@ The two conventions disagree about `/v1` on purpose, and getting it backwards is
 
 ## Using it from a tool instead of from code
 
-Anything with a base-URL field works, and [kunavo.com/docs/integrations](https://kunavo.com/docs/integrations) has the exact fields per client — Claude Code, Kilo Code, Roo Code, Cline, Codex CLI, opencode, Zed, Continue, Aider, Claude Code Router, Open WebUI, Cherry Studio, Chatbox, LobeChat, SillyTavern, Janitor AI. Each page names the client's own documentation and the date the configuration was last checked against it.
+See the [integration guides](https://kunavo.com/docs/integrations) for client-specific configuration. A custom base URL alone does not establish compatibility: check the client version, endpoint, model ID and required features. The examples here are not a certification of every client listed in those guides.
 
 ## For AI agents
 
@@ -94,4 +89,4 @@ One key and one bill instead of an account per provider; routing and failover ac
 
 ## License
 
-MIT — use these snippets in anything.
+The code and documentation in this repository are MIT-licensed. This does not make the hosted Kunavo service or model weights open source.
