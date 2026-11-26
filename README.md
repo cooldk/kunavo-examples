@@ -38,6 +38,7 @@ Use [live pricing](https://kunavo.com/pricing) or the [machine-readable price ca
 
 These examples can be inspected and tested with synthetic data, without an account or API key:
 
+- [`billing-attribution/`](billing-attribution/) reproduces a historical-cost attribution bug when keys move between clients, with a SQLite model and six offline tests.
 - [`usage-daily/`](usage-daily/) converts a single key's usage snapshot to daily CSV, preserving decimal costs and UTC boundaries.
 - [`agent-cost-audit/`](agent-cost-audit/) compares task costs while separating retries, rejected work and health checks.
 - [`music-job-recovery/`](music-job-recovery/) plans recovery after an uncertain submission, with bounded polling and explicit resubmission decisions.
