@@ -65,6 +65,7 @@ Their offline tests validate local behavior, not live model compatibility, billi
 | [`usage-daily/`](usage-daily/) | Daily per-key usage CSV with UTC date boundaries, decimal costs, missing-day handling and offline tests |
 | [`n8n-templates/`](n8n-templates/) | Three importable workflows: validated extraction, FAQ reply drafts and RSS drafts, with human review |
 | [`research/task-costs-2026-10/`](research/task-costs-2026-10/) | All 270 task runs, per-request billing and the harness behind a small first-party cost study |
+| [`streaming-tool-calls/`](streaming-tool-calls/) | Offline SSE fixtures and diagnostics for streamed function calls; no API key or network |
 
 ## Two wire formats, one key
 

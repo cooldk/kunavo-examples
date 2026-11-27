@@ -1,0 +1,9 @@
+{
+  "name": "kunavo-stream-fixture-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Synthetic, keyless Chat Completions SSE fixtures and a conservative completion checker",
+  "scripts": { "demo": "node demo.mjs", "test": "node --test test.mjs" },
+  "engines": { "node": ">=20.11" }
+}
